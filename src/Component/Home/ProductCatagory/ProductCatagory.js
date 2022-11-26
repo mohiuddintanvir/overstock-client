@@ -1,22 +1,31 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import Calander from "./calander/Calander";
 import Model from "./Modal/Model";
 import ProductDetails from "./ProductDetails/ProductDetails";
 
 const ProductCatagory = () => {
-  const [products, setproducts] = useState([]);
-  const[buymodal,setbuymodal]=useState(null)
+  
+  const[buymodal,setbuymodal]=useState(null);
+  const [bookingdate,setbookingdate]=useState(new Date());
 
-  useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setproducts(data);
-      
-      
-      });
-  }, []);
+
+  const{data:products=[],}=useQuery({
+    queryKey:['products'],
+    queryFn:async()=>{
+       const res=await fetch("http://localhost:5000/products");
+    const data=await  res.json();
+    return data;
+    }
+   
+  })
+
+
+
+
   return (
     <section>
+      <Calander bookingdate={bookingdate} setbookingdate={setbookingdate} ></Calander>
       <div>
       {products.map((product) => (
         <ProductDetails 
@@ -27,7 +36,7 @@ const ProductCatagory = () => {
       ))}
     </div>
     {buymodal&&
-      <Model  buymodal={buymodal} ></Model>
+      <Model bookingdate={bookingdate}  buymodal={buymodal} ></Model>
     }
 
     </section>
