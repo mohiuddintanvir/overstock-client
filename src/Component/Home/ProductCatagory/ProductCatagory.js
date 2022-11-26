@@ -36,7 +36,7 @@ const ProductCatagory = () => {
       ))}
     </div>
     {buymodal&&
-      <Model bookingdate={bookingdate}  buymodal={buymodal} ></Model>
+      <Model bookingdate={bookingdate}setbuymodal={setbuymodal}  buymodal={buymodal} ></Model>
     }
 
     </section>

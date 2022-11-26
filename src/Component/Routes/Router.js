@@ -8,6 +8,8 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Home from "../Home/Home";
 import ProductCatagory from "../Home/ProductCatagory/ProductCatagory";
+import Deshboard from "../pages/Dashboard/MainDeshboard/Deshboard";
+import PrivateRoutes from "./Privateroutes/PrivateRoutes";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
             },
 
         ]
+    },
+    {
+        path:'/deshboard',
+        element:<PrivateRoutes><Deshboard></Deshboard></PrivateRoutes> 
     }
 ])
 export default router;
