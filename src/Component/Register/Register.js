@@ -4,7 +4,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider/AuthProvider";
 
 
@@ -12,11 +12,13 @@ const Register = () => {
 
 //import from  Authprovider
 const{createuser,updateuser,providerLogIn }=useContext(AuthContext)
-
+const navigate=useNavigate()
 
 
   const handleRegister = (data) => {
     console.log(data);
+    console.log(data.usertype)
+   
     createuser(data.email,data.password)
     .then(result=>{
         const user=result.user;
@@ -26,12 +28,59 @@ const{createuser,updateuser,providerLogIn }=useContext(AuthContext)
           displaName:data.name
         }
         updateuser(userinfo)
-        .then(()=>{})
+        .then(()=>{
+          
+          saveuser(data.name,data.email,data.usertype);
+        })
         .catch(error=>console.log(error))
     })
     .catch(err=>console.error(err))
    
   };
+
+
+
+
+
+const saveuser=(name,email,usertype)=>{
+  const user={name,email,usertype};
+  console.log(name)
+  console.log(email)
+  console.log(usertype)
+  fetch("http://localhost:5000/users", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+  getusertoken(email)
+ 
+      
+    });
+      
+}
+
+// jwt token
+
+const getusertoken=email=>{
+  fetch(`http://localhost:5000/jwt?email=${email}`)
+  .then(res=>res.json())
+  .then(data=>{
+    console.log(data)
+    if(data.accessToken){
+localStorage.setItem('accessToken',data.accessToken)
+          navigate('/')
+    }
+  })
+}
+
+
+
+
 
 
   // google signIn code
@@ -79,6 +128,17 @@ const handleGoogleSignIn = () => {
           <div className="form-control w-full max-w-xs">
             <label className="label"></label>
             <input
+              type="text"
+              {...register("usertype")}
+              name="usertype"
+              placeholder="usertype"
+              className="input input-bordered w-full max-w-xs"
+            />
+            
+          </div>
+          <div className="form-control w-full max-w-xs">
+            <label className="label"></label>
+            <input
               type="email"
               {...register("email" ,{required:"Email Address is required"
             })}
@@ -101,11 +161,9 @@ const handleGoogleSignIn = () => {
           </div>
 {/* dropdown botton */}
 
-<input type="radio" name="auto" id="radio" value="seller"/>
-<label For="radio">Seller</label>
-<br />
-<input type="radio"name="auto" id="radio" value="Buyer"/>
-<label For="radio">Buyer</label>
+
+
+
 
 
 

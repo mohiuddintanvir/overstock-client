@@ -17,6 +17,8 @@ import Mybuyers from "../pages/Mybuyers/Mybuyers";
 import DeshboardLayout from "../Layout/Dashboardlayout/DeshboardLayout";
 import Main from "../Layout/Main/Main";
 import Deshboard from "../pages/Dashboard/MainDeshboard/Deshboard";
+import Blog from "../pages/Blog/Blog";
+import ErrorPage from "../pages/errorpage/ErrorPage";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/Products',
@@ -37,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path:"*",
+                element: <ErrorPage></ErrorPage>
             },
            
            

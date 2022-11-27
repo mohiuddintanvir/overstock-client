@@ -42,7 +42,7 @@ const [loading,setloading]=useState(true)
 
 useEffect(()=>{
  const unsubscribe= onAuthStateChanged(auth ,currentuser=>{
-    console.log('user observer')
+  
     setuser(currentuser);
     setloading(false);
   });
