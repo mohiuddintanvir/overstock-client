@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
-const Model = ({ buymodal, bookingdate }) => {
+const Model = ({ buymodal,setbuymodal, bookingdate }) => {
   const { name, location, resell, seller_name } = buymodal;
 
   const date = format(bookingdate, "PP", "pp");
@@ -13,7 +13,7 @@ const Model = ({ buymodal, bookingdate }) => {
   const handlemodle = (event) => {
     event.preventDefault();
     const form = event.target;
-    const name = form.name.value;
+    
     const email = form.email.value;
 
     const time = form.date.value;
@@ -41,8 +41,11 @@ const Model = ({ buymodal, bookingdate }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        // setbuymodal(null);
+        if(data.acknowledged){
+          setbuymodal(null);
         toast.success("successfully added your order");
+        }
+        
       });
 
     console.log(booking);
@@ -59,6 +62,7 @@ const Model = ({ buymodal, bookingdate }) => {
           >
             ✕
           </label>
+          <h1>{name}</h1>
 
           <form onSubmit={handlemodle} action="">
             <input
@@ -68,24 +72,28 @@ const Model = ({ buymodal, bookingdate }) => {
               placeholder="Type here"
               className="input input-bordered input-primary w-full max-w-xs"
             />
+           
             <input
               type="text"
               name="name"
-              defaultValue={name}
+              defaultValue={user?.name}
+              readOnly
               placeholder="Type here"
               className="input input-bordered input-primary w-full max-w-xs"
             />
+
             <input
               type="text"
               name="email"
               defaultValue={user?.email}
-              disabled
+              readOnly
               placeholder="Type here"
               className="input input-bordered input-primary w-full max-w-xs"
             />
             <input
               type="text"
               name="resell"
+              readOnly
               defaultValue={resell}
               placeholder="Type here"
               className="input input-bordered input-primary w-full max-w-xs"
@@ -94,6 +102,7 @@ const Model = ({ buymodal, bookingdate }) => {
               type="text"
               name="seller_name"
               defaultValue={seller_name}
+              readOnly
               placeholder="Type here"
               className="input input-bordered input-primary w-full max-w-xs"
             />
@@ -101,6 +110,7 @@ const Model = ({ buymodal, bookingdate }) => {
               type="text"
               name="location"
               defaultValue={location}
+              
               placeholder="Type here"
               className="input input-bordered input-primary w-full max-w-xs"
             />

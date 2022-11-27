@@ -1,5 +1,6 @@
 
 
+import { GoogleAuthProvider } from "firebase/auth";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -8,7 +9,12 @@ import { AuthContext } from "../context/AuthProvider/AuthProvider";
 
 
 const Register = () => {
-const{createuser,updateuser}=useContext(AuthContext)
+
+//import from  Authprovider
+const{createuser,updateuser,providerLogIn }=useContext(AuthContext)
+
+
+
   const handleRegister = (data) => {
     console.log(data);
     createuser(data.email,data.password)
@@ -26,6 +32,22 @@ const{createuser,updateuser}=useContext(AuthContext)
     .catch(err=>console.error(err))
    
   };
+
+
+  // google signIn code
+const googleProvider = new GoogleAuthProvider()
+
+// google handle
+const handleGoogleSignIn = () => {
+  providerLogIn(googleProvider)
+      .then(result => {
+          const user = result.user;
+          console.log(user);
+
+
+      })
+      .catch(err => console.error(err))
+}
 
 
 
@@ -77,12 +99,24 @@ const{createuser,updateuser}=useContext(AuthContext)
             />
              {errors.password && <p className="text-red-600" role="alert">{errors.password?.message}</p>}
           </div>
+{/* dropdown botton */}
+
+<input type="radio" name="auto" id="radio" value="seller"/>
+<label For="radio">Seller</label>
+<br />
+<input type="radio"name="auto" id="radio" value="Buyer"/>
+<label For="radio">Buyer</label>
+
+
+
+
+
 
           <input className="btn btn-accent w-full mt-5" type="submit" />
         </form>
         <p className="mt-5 text-center">New to Doctors Portal?<Link to="/login" className=" text-secondary">please LogIn</Link></p>
       <div className="divider">OR</div>
-      <button className="btn btn-outline w-full h-12 my-6 ">CONTINUE WITH GOOGLE</button>
+      <button onClick={handleGoogleSignIn} className="btn btn-outline w-full h-12 my-6 ">CONTINUE WITH GOOGLE</button>
       </div>
     </div>
   );
