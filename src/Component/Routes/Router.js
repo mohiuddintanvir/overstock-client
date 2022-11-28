@@ -19,6 +19,7 @@ import Main from "../Layout/Main/Main";
 import Deshboard from "../pages/Dashboard/MainDeshboard/Deshboard";
 import Blog from "../pages/Blog/Blog";
 import ErrorPage from "../pages/errorpage/ErrorPage";
+import AllUsers from "../pages/allusers/AllUsers";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
             {
                 path: '/deshboard/mybuyers',
                 element:<Mybuyers></Mybuyers>
+            },
+            {
+                path: '/deshboard/allusers',
+                element:<AllUsers></AllUsers>
             },
 
         ]

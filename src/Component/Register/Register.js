@@ -37,6 +37,7 @@ const navigate=useNavigate()
     .catch(err=>console.error(err))
    
   };
+ 
 
 
 
@@ -44,9 +45,11 @@ const navigate=useNavigate()
 
 const saveuser=(name,email,usertype)=>{
   const user={name,email,usertype};
+  // data test 
   console.log(name)
   console.log(email)
   console.log(usertype)
+  
   fetch("http://localhost:5000/users", {
     method: "POST",
     headers: {
@@ -57,7 +60,8 @@ const saveuser=(name,email,usertype)=>{
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
-  getusertoken(email)
+      
+  getusertoken(email);
  
       
     });

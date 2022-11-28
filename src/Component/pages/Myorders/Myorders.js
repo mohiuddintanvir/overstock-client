@@ -45,7 +45,7 @@ const {data:bookings=[]}=useQuery({
       </tr>
     </thead>
     <tbody>
- {
+ {bookings &&
   bookings.map((booking,i)=><tr key={booking._id}>
     <th>
       <label>
