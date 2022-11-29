@@ -3,6 +3,13 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const AllUsers = () => {
+
+
+
+
+
+
+
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -24,6 +31,32 @@ const AllUsers = () => {
         }
       });
   };
+
+
+
+
+
+
+  // const handledelete=appusers=>{
+  //   fetch(`https://over-stcok-server.vercel.app/users/${appusers._id}`,{
+  //     method:"DELETE",
+     
+  //   })
+  //   .then(res=>res.json())
+  //   .then(data=>{
+  //     console.log(data)
+     
+  //   })
+  // }
+
+
+
+
+
+
+
+
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -56,7 +89,7 @@ const AllUsers = () => {
                   )}{" "}
                 </td>
                 <td>
-                  <button className="btn btn-xs bg-danger ">Delete</button>
+                  <button  className="btn btn-xs bg-danger ">Delete</button>
                 </td>
               </tr>
             ))}

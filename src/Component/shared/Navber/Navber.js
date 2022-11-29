@@ -20,9 +20,7 @@ const Navber = () => {
         <Link to="/blog">Blog</Link>
       </li>
 
-      <li>
-        <Link to="/Products">Products</Link>
-      </li>
+     
 
       {/* deshboard area  */}
       <li>

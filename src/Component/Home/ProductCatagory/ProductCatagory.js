@@ -1,38 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import Calander from "./calander/Calander";
+import ProductInfo from "./Info/ProductInfo";
 import Model from "./Modal/Model";
-import ProductDetails from "./ProductDetails/ProductDetails";
+
 
 const ProductCatagory = () => {
-  
+  const categorydata=useLoaderData();
   const[buymodal,setbuymodal]=useState(null);
   const [bookingdate,setbookingdate]=useState(new Date());
 
 
-  const{data:products=[],}=useQuery({
-    queryKey:['products'],
-    queryFn:async()=>{
-       const res=await fetch("https://over-stcok-server.vercel.app/products");
-    const data=await  res.json();
-    return data;
-    }
-   
-  })
+console.log(categorydata)
 
 
 
 
   return (
     <section>
-      <Calander bookingdate={bookingdate} setbookingdate={setbookingdate} ></Calander>
+ 
       <div>
-      {products.map((product) => (
-        <ProductDetails 
+      {categorydata.map((product) => (
+        
+        <ProductInfo
         setbuymodal={setbuymodal}
         key={product.id} 
         product={product}
-        ></ProductDetails>
+        ></ProductInfo>
+      
       ))}
     </div>
     {buymodal&&

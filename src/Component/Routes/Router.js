@@ -21,6 +21,8 @@ import Blog from "../pages/Blog/Blog";
 import ErrorPage from "../pages/errorpage/ErrorPage";
 import AllUsers from "../pages/allusers/AllUsers";
 import AdminRoutes from "./Privateroutes/AdminRoutes/AdminRoutes";
+import Sellers from "../pages/sellers/Sellers";
+import { FacebookAuthProvider } from "firebase/auth";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -35,7 +37,8 @@ const router = createBrowserRouter([
                 element: <Blog></Blog>
             },
             {
-                path: '/Products',
+                path: '/Products/:name',
+                loader:({params})=>fetch(`https://over-stcok-server.vercel.app/categories/${params.name}`),
                 element:<PrivateRoutes><ProductCatagory></ProductCatagory></PrivateRoutes> 
             },
             {
@@ -81,6 +84,10 @@ const router = createBrowserRouter([
             {
                 path: '/deshboard/allusers',
                 element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes> 
+            },
+            {
+                path: '/deshboard/seller',
+                element: <AdminRoutes><Sellers></Sellers></AdminRoutes> 
             },
 
         ]

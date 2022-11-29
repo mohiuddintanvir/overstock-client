@@ -1,0 +1,69 @@
+[
+    {
+        "id":1,
+        
+"catagory_name":"Nike",
+
+        "picture":"https://assets.newatlas.com/dims4/default/51d3f96/2147483647/strip/true/crop/2000x1334+0+0/resize/2000x1334!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Fae%2F3a%2Fc04e4cad44eaa53dff17ae64b9b0%2F1.jpg",
+        "name":" Air Jordan 1 ",
+        "location":"3/1 ,Uttor chashara Narayangonj",
+        "resell":400,
+        "real":1600,
+        "use":5,
+        "seller_name":"Sahid Pogba"
+    },
+    {
+        "id":2,
+        "catagory_name":"Nike",
+        "picture":"https://houseofheat.co/app/uploads/2021/10/Air-Jordan-3-Black-Cement-1988.jpg",
+        "name":" Air Jordan 3 ",
+        "location":"Dhaka",
+        "resell":500,
+        "real":1800,
+        "use":5,
+        "seller_name":"Kylian  mahbub"
+    },
+    {
+        "id":1,
+        "catagory_name":"Addidas",
+        "picture":"https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/d17732901f48426c88b8ae060094e37b_9366/campus-80s-pride-shoes.jpg",
+        "name":" campus-80s ",
+        "location":"3/1 ,Mirpur",
+        "resell":200,
+        "real":2000,
+        "use":3,
+        "seller_name":"mohiuddin molla"
+    },
+    {
+        "id":2,
+        "catagory_name":"Addidas",
+        "picture":"https://i.ebayimg.com/thumbs/images/g/ydkAAOSwvGti8m5Q/s-l300.jpg",
+        "name":" Vintage-80s ",
+        "location":"3/1 ,barisal shodor",
+        "resell":400,
+        "real":1600,
+        "use":5,
+        "seller_name":" Ronaldo chowdhory"
+    },{
+        "id":1,
+        "catagory_name":"Old school vans",
+        "picture":"https://sg-test-11.slatic.net/other/roc/4437e72f241e6d1c65f9f0591c1eef83.jpg",
+        "name":" Vens unisex ",
+        "location":"3/1 ,ukilpara,narayangonj",
+        "resell":400,
+        "real":1600,
+        "use":5,
+        "seller_name":"Messi saha"
+    },
+    {
+        "id":2,
+        "catagory_name":"Old school vans",
+        "picture":"https://images.vans.com/is/image/Vans/VN0A5DYCBZW-HERO?hei=392&wid=390&qlt=50&resMode=sharp2&op_sum=0.9,1.0,8,0",
+        "name":" old customize vens ",
+        "location":"3/1 ,amlapara,narayangonj",
+        "resell":500,
+        "real":1600,
+        "use":5,
+        "seller_name":"Naymer kumar"
+    }
+]
