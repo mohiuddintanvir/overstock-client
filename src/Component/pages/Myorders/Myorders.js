@@ -7,7 +7,7 @@ const Myorders = () => {
   const{user}=useContext(AuthContext);
 
 
-const url=`http://localhost:5000/bookings?email=${user?.email}`
+const url=`https://over-stcok-server.vercel.app/bookings?email=${user?.email}`
 
 
 // tankstack

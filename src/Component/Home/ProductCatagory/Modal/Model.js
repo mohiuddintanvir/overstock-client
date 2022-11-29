@@ -31,7 +31,7 @@ const Model = ({ buymodal,setbuymodal, bookingdate }) => {
       phone,
       time,
     };
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://over-stcok-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

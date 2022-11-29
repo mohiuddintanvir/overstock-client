@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import useAdmin from '../../pages/useadmin/Useadmin';
 import Navber from '../../shared/Navber/Navber';
 
 const DeshboardLayout = () => {
+
+  const{user}=useContext(AuthContext)
+
+const [isAdmin]=useAdmin(user?.email)
+
+
     return (
         <div>
             <Navber></Navber>
@@ -21,7 +29,12 @@ const DeshboardLayout = () => {
       <li><Link to="/deshboard/addproducts">Add Products</Link></li>
       <li><Link to="/deshboard/myproducts">My Products</Link></li>
       <li><Link to="/deshboard/mybuyers">My Buyers</Link></li>
-      <li><Link to="/deshboard/allusers">All users</Link></li>
+      {
+         isAdmin  && <li><Link to="/deshboard/allusers">All users</Link></li>
+      
+        
+      }
+      
       <li><Link to="/deshboard/myorders">Myorders</Link></li>
     </ul>
   

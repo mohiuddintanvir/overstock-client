@@ -20,6 +20,7 @@ import Deshboard from "../pages/Dashboard/MainDeshboard/Deshboard";
 import Blog from "../pages/Blog/Blog";
 import ErrorPage from "../pages/errorpage/ErrorPage";
 import AllUsers from "../pages/allusers/AllUsers";
+import AdminRoutes from "./Privateroutes/AdminRoutes/AdminRoutes";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -79,7 +80,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/deshboard/allusers',
-                element:<AllUsers></AllUsers>
+                element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes> 
             },
 
         ]

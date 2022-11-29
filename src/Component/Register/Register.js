@@ -50,7 +50,7 @@ const saveuser=(name,email,usertype)=>{
   console.log(email)
   console.log(usertype)
   
-  fetch("http://localhost:5000/users", {
+  fetch("https://over-stcok-server.vercel.app/users", {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -71,7 +71,7 @@ const saveuser=(name,email,usertype)=>{
 // jwt token
 
 const getusertoken=email=>{
-  fetch(`http://localhost:5000/jwt?email=${email}`)
+  fetch(`https://over-stcok-server.vercel.app/jwt?email=${email}`)
   .then(res=>res.json())
   .then(data=>{
     console.log(data)
@@ -129,6 +129,11 @@ const handleGoogleSignIn = () => {
             />
             
           </div>
+
+
+
+
+
           <div className="form-control w-full max-w-xs">
             <label className="label"></label>
             <input
@@ -140,6 +145,8 @@ const handleGoogleSignIn = () => {
             />
             
           </div>
+
+
           <div className="form-control w-full max-w-xs">
             <label className="label"></label>
             <input
