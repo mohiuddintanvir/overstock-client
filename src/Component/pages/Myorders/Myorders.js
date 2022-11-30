@@ -24,7 +24,7 @@ const {data:bookings=[]}=useQuery({
     return data;
   }
 })
-
+console.log(bookings)
     return (
         <div>
           <h2 className='texl-5xl font-bold'>My orders</h2>

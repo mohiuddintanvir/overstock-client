@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const AddProducts = () => {
+  const{user}=useContext(AuthContext);
     const {
         register,
         formState: { errors },
@@ -9,6 +11,7 @@ const AddProducts = () => {
       } = useForm();
 
       const handleLogin = (data) => {
+        console.log(data)
         fetch("https://over-stcok-server.vercel.app/categories", {
       method: "POST",
       headers: {
@@ -41,6 +44,13 @@ const AddProducts = () => {
                      type="text" placeholder="realPrice" className="input input-ghost w-full input-bordered " />
                     <input name='catagory_name' {...register("catagory_name")}
                      type="text" placeholder="Nike/Addidas/Old school vans(category_name)" className="input input-ghost w-full input-bordered " required/>
+
+                    <input name='email' {...register("email")}
+                     type="email" placeholder="Give your email here" defaultValue={user?.email} readOnly className="input input-ghost w-full input-bordered " required/>
+
+                    <input name='advertise' {...register("advertise")}
+                     type="text" placeholder="Want to advertise your products(Yes/NO)" className="input input-ghost w-full input-bordered " required/>
+
                    
                     <input name='condition'{...register("condition")}
                      type="text" placeholder="excellent, good, fair" className="input input-ghost w-full input-bordered " />

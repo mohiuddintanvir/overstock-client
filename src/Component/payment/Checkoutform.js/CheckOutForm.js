@@ -82,10 +82,12 @@ body: JSON.stringify({ payment }),
 .then(res=>res.json())
 .then(data=>{
     console.log(data);
-    if(data.inertedId){
-        setsuccess('Congratulation ! You successfull paid the payment')
+   
+     setsuccess('Congratulation ! You successfull paid the payment')
         settranjectionId(paymentIntent.id);
         
+    if(data.insertedId){
+       
     }
 })
 
@@ -123,8 +125,8 @@ body: JSON.stringify({ payment }),
       <p className="text-red-500">{carderror}</p>
       {
         success&& <div>
-            <p className="text-green-400">{success} </p>
-            <p>Your TranjectionId: <span>{tranjectionId}</span></p>
+            <p className="text-secondary">{success} </p>
+            <p className="text-secondary">Your TranjectionId: <span>{tranjectionId}</span></p>
           
          
             
