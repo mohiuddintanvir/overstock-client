@@ -1,3 +1,27 @@
+# Project Name:
+Overstock(buy your fevrite shoes on reason able price)
+
+# Project Link:
+[click here](https://over-stck-client.web.app/)
+
+
+# Project Description:
+
+* This website is for online selling old and used shoes
+* I use vercel to provide online data to may website .
+* Verious types of fremwork i used in this projects like jsx ,stripe,firebase,react query,tailwind,daisy ui,etc..
+* For this single page API using  react routes .
+* Page Authenticated By Google 
+* Also have login and Registration option too.
+*This website also have admin seller and buyer pennel,
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
