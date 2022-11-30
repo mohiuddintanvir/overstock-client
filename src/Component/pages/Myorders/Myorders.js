@@ -64,7 +64,8 @@ const {data:bookings=[]}=useQuery({
       </div>
     </td>
     <td>
-    ${booking.resell}/
+      <button>${booking.resell}/</button>
+    
       
     </td>
     
