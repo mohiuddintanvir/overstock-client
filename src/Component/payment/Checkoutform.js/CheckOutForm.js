@@ -4,9 +4,12 @@ import React, { useEffect, useState } from "react";
 const CheckOutForm = ({ paymentdata }) => {
   const [clientSecret, setClientSecret] = useState("");
 
-  const { resell, seller_name, email } = paymentdata;
+  const { resell, seller_name, email ,_id} = paymentdata;
 
   const [carderror, setcarderror] = useState("");
+  const [success, setsuccess] = useState("");
+  const [processing, setprocessing] = useState(false);
+  const [tranjectionId, settranjectionId] = useState("");
 
   const stripe = useStripe();
   const elements = useElements();
@@ -45,7 +48,7 @@ const CheckOutForm = ({ paymentdata }) => {
     } else {
       setcarderror("");
     }
-
+setprocessing(true)
     const { paymentIntent, error: confirmerror } =
       await stripe.confirmCardPayment(
         clientSecret,
@@ -63,7 +66,31 @@ const CheckOutForm = ({ paymentdata }) => {
         setcarderror(confirmerror.message);
         return;
     }
-    console.log('paymentIntent',paymentIntent)
+    if(paymentIntent.status==="succeeded"){
+
+const payment={
+price: resell,
+ transactionId:paymentIntent.id,
+ email,
+ bookingid:_id
+}
+fetch('https://over-stcok-server.vercel.app/payments',{
+method:'POST',
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({ payment }),
+})
+.then(res=>res.json())
+.then(data=>{
+    console.log(data);
+    if(data.inertedId){
+        setsuccess('Congratulation ! You successfull paid the payment')
+        settranjectionId(paymentIntent.id);
+        
+    }
+})
+
+    };
+   setprocessing(false);
   }
 
   return (
@@ -88,12 +115,21 @@ const CheckOutForm = ({ paymentdata }) => {
         <button
           className="btn btn-sm mt-4 btn-primary"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret||processing}
         >
           Pay
         </button>
       </form>
       <p className="text-red-500">{carderror}</p>
+      {
+        success&& <div>
+            <p className="text-green-400">{success} </p>
+            <p>Your TranjectionId: <span>{tranjectionId}</span></p>
+          
+         
+            
+        </div>
+      }
     </>
   );
 };
