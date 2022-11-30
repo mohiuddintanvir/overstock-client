@@ -19,7 +19,9 @@ const Payment = () => {
            <p className="text-xl">Please pay  <strong>${resell}</strong>  for your shoes</p>
            <div className='w-96 my-12'>
            <Elements stripe={stripePromise}>
-      <CheckOutForm />
+      <CheckOutForm 
+      paymentdata={paymentdata}
+      />
     </Elements>
            </div>
         </div>
