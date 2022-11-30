@@ -95,7 +95,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/deshboard/payment/:id',
-                element: <AdminRoutes><Payment></Payment></AdminRoutes>,
+                element: <PrivateRoutes><Payment></Payment></PrivateRoutes>,
                 loader: ({params})=>fetch(`https://over-stcok-server.vercel.app/bookings/${params.id}`)
             },
 

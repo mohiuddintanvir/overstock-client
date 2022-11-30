@@ -32,13 +32,13 @@ const [isAdmin]=useAdmin(user?.email)
       {
          isAdmin  && 
          <>
-       
+        <li><Link to="/deshboard/allusers">All users</Link></li>
+      <li><Link to="/deshboard/seller">Sellers</Link></li> 
     
          </>
      
       }
-        <li><Link to="/deshboard/allusers">All users</Link></li>
-      <li><Link to="/deshboard/seller">Sellers</Link></li>  
+        
            <li><Link to="/deshboard/myorders">Myorders</Link></li>
     
     </ul>
