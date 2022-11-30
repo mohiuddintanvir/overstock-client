@@ -23,10 +23,13 @@ import AllUsers from "../pages/allusers/AllUsers";
 import AdminRoutes from "./Privateroutes/AdminRoutes/AdminRoutes";
 import Sellers from "../pages/sellers/Sellers";
 import { FacebookAuthProvider } from "firebase/auth";
+import Payment from "../payment/Payment";
+import DisplayError from "../shared/error/DisplayError";
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement:<DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
@@ -60,6 +63,7 @@ const router = createBrowserRouter([
     {
         path:'/deshboard',
         element:<PrivateRoutes><DeshboardLayout></DeshboardLayout></PrivateRoutes>,
+        errorElement:<DisplayError></DisplayError>,
         children:[
             {
               path:'/deshboard'  ,
@@ -88,6 +92,11 @@ const router = createBrowserRouter([
             {
                 path: '/deshboard/seller',
                 element: <AdminRoutes><Sellers></Sellers></AdminRoutes> 
+            },
+            {
+                path: '/deshboard/payment/:id',
+                element: <AdminRoutes><Payment></Payment></AdminRoutes>,
+                loader: ({params})=>fetch(`https://over-stcok-server.vercel.app/bookings/${params.id}`)
             },
 
         ]

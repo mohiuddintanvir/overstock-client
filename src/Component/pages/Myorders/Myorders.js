@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 
@@ -39,7 +40,7 @@ const {data:bookings=[]}=useQuery({
         </th>
        
         <th>Title</th>
-        <th>Price</th>
+        <th>payment</th>
         <th>Payment</th>
         
       </tr>
@@ -64,13 +65,21 @@ const {data:bookings=[]}=useQuery({
       </div>
     </td>
     <td>
-      <button>${booking.resell}/</button>
+    
+         <button >${booking.resell}/</button>
     
       
     </td>
     
     <th>
-      <button className="btn btn-ghost btn-xs">details</button>
+    {booking.resell && !booking.paid &&
+     <Link to={`/deshboard/payment/${booking._id}`}><button className="btn btn-primary">Pay</button></Link>
+    }
+    {
+      booking.resell && booking.paid &&
+      <span text-primary>paid</span>
+    }
+      
     </th>
   </tr>)
  }   
