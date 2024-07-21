@@ -25,6 +25,7 @@ import Sellers from "../pages/sellers/Sellers";
 import { FacebookAuthProvider } from "firebase/auth";
 import Payment from "../payment/Payment";
 import DisplayError from "../shared/error/DisplayError";
+import Card from "../pages/card/Card";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
+                path: '/cart',
+                element: <Card></Card>
+            },
+            {
                 path:"*",
                 element: <ErrorPage></ErrorPage>
             },
@@ -65,12 +70,9 @@ const router = createBrowserRouter([
         element:<PrivateRoutes><DeshboardLayout></DeshboardLayout></PrivateRoutes>,
         errorElement:<DisplayError></DisplayError>,
         children:[
+         
             {
-              path:'/deshboard'  ,
-              element:<Deshboard></Deshboard>
-            },
-            {
-                path: '/deshboard/myorders',
+                path: '/deshboard',
                 element: <Myorders></Myorders>
             },
             {

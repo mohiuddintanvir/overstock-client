@@ -16,9 +16,10 @@ useEffect(()=>{
 
     return (
         <div>
-            <div>{advertised.length}</div>
+            
  {
-    advertised.map(adver=><Advertise adver={adver}></Advertise>)
+    advertised.map(adver=>
+        <Advertise adver={adver}></Advertise>)
  }
         </div>
     );

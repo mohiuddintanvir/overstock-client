@@ -4,15 +4,13 @@ import Banner from './Banner/Banner';
 import Catagory from './Catagory/Catagory';
 import ProductCatagory from './ProductCatagory/ProductCatagory';
 import UnicSection from './Unica/UnicSection';
+import Shoes from '../pages/Shoes/Shoes';
 
 const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <Catagory></Catagory>
-            <Advertisement></Advertisement>
-           
-            <UnicSection></UnicSection>
+            <Shoes></Shoes>
         </div>
     );
 };

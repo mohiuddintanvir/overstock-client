@@ -48,24 +48,24 @@ const Register = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-
-        getusertoken(email);
+        navigate("/");
+        
       });
   };
 
   // jwt token
 
-  const getusertoken = (email) => {
-    fetch(`https://over-stcok-server.vercel.app/jwt?email=${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.accessToken) {
-          localStorage.setItem("accessToken", data.accessToken);
-          navigate("/");
-        }
-      });
-  };
+  // const getusertoken = (email) => {
+  //   fetch(`https://over-stcok-server.vercel.app/jwt?email=${email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       if (data.accessToken) {
+  //         localStorage.setItem("accessToken", data.accessToken);
+        
+  //       }
+  //     });
+  // };
 
   // google signIn code
   const googleProvider = new GoogleAuthProvider();

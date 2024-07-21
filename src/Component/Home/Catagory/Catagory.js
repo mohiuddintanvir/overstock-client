@@ -9,7 +9,7 @@ const Catagory = () => {
     .then(data=>setproductdata(data))
   },[])
   return (
-    <div className='grid grid-cols-3'>
+    <div className=''>
   
       
       {

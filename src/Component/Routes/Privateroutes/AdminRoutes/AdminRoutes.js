@@ -1,23 +1,31 @@
-import React, { useContext } from 'react';
-import { LoaderIcon } from 'react-hot-toast';
-import { Navigate, useLocation } from 'react-router-dom';
-import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
-import useAdmin from '../../../pages/useadmin/Useadmin';
+// src/pages/useadmin/useAdmin.js
+import { useState, useEffect } from 'react';
 
-const AdminRoutes = ({children}) => {
-    const {user,loading}=useContext(AuthContext);
-const [isAdmin,isAdminloading]=useAdmin(user?.email);
+const useAdmin = (email) => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-
-    const location=useLocation();
-    if(loading ||isAdminloading){
-        return <LoaderIcon></LoaderIcon>
+  useEffect(() => {
+    if (email) {
+      fetch(`https://over-stcok-server-usx2-icrxtv27y.vercel.app/users/admin/${email}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log("Admin check response:", data); // Log response
+          setIsAdmin(data.isAdmin);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching admin status:", error);
+          setIsAdmin(false);
+          setLoading(false);
+        });
+    } else {
+      setIsAdmin(false);
+      setLoading(false);
     }
-    if(user&& isAdmin){
-        return children;
-      
-    }
-    return <Navigate to="/login" state={{from:location}} replace></Navigate>
-}
+  }, [email]);
 
-export default AdminRoutes;
+  return [isAdmin, loading];
+};
+
+export default useAdmin;
