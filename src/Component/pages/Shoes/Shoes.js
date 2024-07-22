@@ -15,7 +15,7 @@ const Shoes = () => {
     
 
     return (
-        <div className='w-screen h-[120rem] bg-white ' id='shop'>
+        <div className=' bg-white ' id='shop'>
              
             
                 {shoes.map(shop => (

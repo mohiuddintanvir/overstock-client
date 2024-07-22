@@ -1,9 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, createContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import { FiSearch, FiShoppingCart } from "react-icons/fi";
 import useAdmin from "../../pages/useadmin/Useadmin";
 
+export const CartContext = createContext(); // Create the context
 
 const Navber = () => {
   const { user, logout } = useContext(AuthContext);
@@ -79,61 +80,63 @@ const Navber = () => {
   );
 
   return (
-    <div className="navbar bg-white shadow-md p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Left: Logo */}
-        <div className="flex-shrink-0">
-          <Link to="/" className="text-xl font-bold text-gray-800">
-            Overstock
-          </Link>
-        </div>
-
-        {/* Center: Search bar */}
-        <div className="flex-1 lg:flex lg:justify-center hidden lg:block">
-          <div className="relative w-full max-w-2xl mx-4">
-            <input
-              type="text"
-              placeholder="Search for anything..."
-              className="input input-bordered w-full pl-12 pr-4 bg-white text-black"
-            />
-            <button className="absolute left-3 top-1/2 transform -translate-y-1/2">
-              <FiSearch className="w-5 h-5 text-black" />
-            </button>
+    <CartContext.Provider value={setCartCount}>
+      <div className="navbar bg-white shadow-md p-4">
+        <div className="container mx-auto flex justify-between items-center">
+          {/* Left: Logo */}
+          <div className="flex-shrink-0">
+            <Link to="/" className="text-xl font-bold text-gray-800">
+              Overstock
+            </Link>
           </div>
-        </div>
 
-        {/* Right: Menu items */}
-        <div className="flex items-center space-x-4">
-          <ul className="menu menu-horizontal hidden lg:flex">{menuItems}</ul>
+          {/* Center: Search bar */}
+          <div className="flex-1 lg:flex lg:justify-center hidden lg:block">
+            <div className="relative w-full max-w-2xl mx-4">
+              <input
+                type="text"
+                placeholder="Search for anything..."
+                className="input input-bordered w-full pl-12 pr-4 bg-white text-black"
+              />
+              <button className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                <FiSearch className="w-5 h-5 text-black" />
+              </button>
+            </div>
+          </div>
 
-          {/* Dropdown menu for small screens */}
-          <div className="dropdown lg:hidden">
-            <label tabIndex={0} className="btn btn-ghost">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+          {/* Right: Menu items */}
+          <div className="flex items-center space-x-4">
+            <ul className="menu menu-horizontal hidden lg:flex">{menuItems}</ul>
+
+            {/* Dropdown menu for small screens */}
+            <div className="dropdown lg:hidden relative">
+              <label tabIndex={0} className="btn btn-ghost">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </label>
+              <ul
+                tabIndex={1}
+                className="menu menu-compact dropdown-content mt-3 right-0 left-auto shadow text-black bg-white rounded-box w-56"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex={1}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              {menuItems}
-            </ul>
+                {menuItems}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </CartContext.Provider>
   );
 };
 

@@ -26,6 +26,7 @@ import { FacebookAuthProvider } from "firebase/auth";
 import Payment from "../payment/Payment";
 import DisplayError from "../shared/error/DisplayError";
 import Card from "../pages/card/Card";
+import MoreDetailsShop from "../pages/Shoes/MoreDetailsShop";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Card></Card>
+            },
+            {
+                path: '/shop-details',
+                element: <MoreDetailsShop></MoreDetailsShop>
             },
             {
                 path:"*",

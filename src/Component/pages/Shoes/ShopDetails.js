@@ -38,22 +38,48 @@ const ProductCard = ({ shop }) => {
                     slidesToScroll: 1
                 }
             }
-        ]
+        ],
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />
     };
 
     return (
-        <div className='p-4 md:p-6 lg:p-8'>
-            <h1 className='text-2xl md:text-3xl lg:text-4xl mb-4 text-black'>{section_name}</h1>
-            <div className="relative">
+        <div className='container mx-auto overflow-hidden'>
+            <h1 className='text-2xl md:text-3xl lg:text-4xl mb-4 text-black text-center'>{section_name}</h1>
+            <div className="relative mx-auto w-full lg:w-3/4">
                 <Slider {...settings}>
                     {category.map((categorys, index) => (
-                        <div key={index} className='p-2'>
+                        <div key={index} className='px-2'>
                             <MoreDetailsShop categorys={categorys} />
                         </div>
                     ))}
                 </Slider>
             </div>
         </div>
+    );
+};
+
+// Custom next arrow
+const SampleNextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={`${className} z-10 right-0 transform -translate-y-1/2 top-1/2`}
+            style={{ ...style, display: 'block', background: 'black', borderRadius: '50%' }}
+            onClick={onClick}
+        />
+    );
+};
+
+// Custom previous arrow
+const SamplePrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={`${className} z-10 left-0 transform -translate-y-1/2 top-1/2`}
+            style={{ ...style, display: 'block', background: 'black', borderRadius: '50%' }}
+            onClick={onClick}
+        />
     );
 };
 
